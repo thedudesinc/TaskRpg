@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingService {
-
-  constructor() { }
+  changeLoadingVisible: Subject<boolean> = new Subject();
+  isLoadingVisible$: Observable<boolean> =
+    this.changeLoadingVisible.asObservable();
 }

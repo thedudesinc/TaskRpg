@@ -5,32 +5,39 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PagesComponent } from './pages/pages.component';
 import { QuestDashboardComponent } from './pages/quest-dashboard/quest-dashboard.component';
 import { StoreComponent } from './pages/store/store.component';
 import { CharacterComponent } from './pages/character/character.component';
+import { SignupComponent } from './layout/signup/signup.component';
+import { LoginComponent } from './layout/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
     SignupComponent,
+    LoginComponent,
     ProfileComponent,
     PagesComponent,
     QuestDashboardComponent,
     StoreComponent,
-    CharacterComponent
+    CharacterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
