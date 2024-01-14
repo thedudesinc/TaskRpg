@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './layout/login/login.component';
-import { SignupComponent } from './layout/signup/signup.component';
 import { authGuard } from './layout/login/auth.guard';
+import { LandingComponent } from './layout/landing/landing.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: '', component: LandingComponent },
   {
     path: '',
     loadChildren: () =>

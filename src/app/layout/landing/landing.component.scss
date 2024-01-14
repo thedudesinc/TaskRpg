@@ -1,0 +1,19 @@
+.button {
+    @apply bg-cyan-700 font-medium rounded-md;
+    box-shadow: 0 10px #164e63;
+    transition-duration: 50ms;
+    border: none;
+}
+
+.button:hover {
+    @apply bg-cyan-800;
+}
+
+.button:active {
+    box-shadow: 0 5px #164e63;
+    transform: translateY(4px);
+}
+
+.card {
+    box-shadow: 10px 10px #164e63;
+}
