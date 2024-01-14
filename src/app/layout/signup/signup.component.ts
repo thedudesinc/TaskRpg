@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -11,7 +11,6 @@ import { ControlsOf } from 'src/app/helpers/helper.types';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UserInput } from 'src/app/services/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 
 @Component({
@@ -20,6 +19,16 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
+
+  @Input()
+  isSignupVisible = false;
+
+  @Output()
+  closeEventEmitter: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output()
+  openLoginEventEmitter: EventEmitter<void> = new EventEmitter<void>();
+
   userForm: FormGroup<ControlsOf<UserInput>> = new FormGroup<
     ControlsOf<UserInput>
   >({
@@ -62,8 +71,11 @@ export class SignupComponent {
   constructor(
     private userService: UserService,
     private loadingService: LoadingService,
-    private router: Router,
   ) {}
+
+  onClose(): void {
+    this.closeEventEmitter.emit();
+  }
 
   onSubmit(): void {
     this.loadingService.changeLoadingVisible.next(true);
@@ -71,7 +83,8 @@ export class SignupComponent {
       .create(this.userForm.getRawValue())
       .subscribe((response) => {
         this.loadingService.changeLoadingVisible.next(false);
-        this.router.navigate(['/login']);
+        this.closeEventEmitter.emit();
+        this.openLoginEventEmitter.emit();
       });
   }
 }
