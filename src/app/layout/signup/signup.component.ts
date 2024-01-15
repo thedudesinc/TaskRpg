@@ -19,7 +19,6 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-
   @Input()
   isSignupVisible = false;
 
