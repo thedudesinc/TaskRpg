@@ -25,16 +25,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    SidebarComponent,
     CharacterComponent,
     ProfileComponent,
     QuestDashboardComponent,
-    StoreComponent
+    StoreComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule,
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
 })
-export class PagesModule { }
+export class PagesModule {}

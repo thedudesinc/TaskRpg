@@ -7,12 +7,15 @@ import { PagesComponent } from './pages/pages.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { LoginComponent } from './layout/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandingComponent } from './layout/landing/landing.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SidebarComponent,
     FooterComponent,
     SignupComponent,
     LoginComponent,
@@ -23,6 +26,7 @@ import { LandingComponent } from './layout/landing/landing.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
