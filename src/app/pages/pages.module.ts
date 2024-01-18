@@ -7,7 +7,6 @@ import { StoreComponent } from './store/store.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 
 const routes: Routes = [
   {

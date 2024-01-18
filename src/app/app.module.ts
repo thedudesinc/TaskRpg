@@ -7,10 +7,11 @@ import { PagesComponent } from './pages/pages.component';
 import { SignupComponent } from './layout/signup/signup.component';
 import { LoginComponent } from './layout/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandingComponent } from './layout/landing/landing.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

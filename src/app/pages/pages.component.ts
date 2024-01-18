@@ -9,6 +9,6 @@ export class PagesComponent {
   isSidebarVisible = false;
 
   toggleSidebar(): void {
-    this.isSidebarVisible = false;
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 }

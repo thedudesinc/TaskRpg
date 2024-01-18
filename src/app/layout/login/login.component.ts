@@ -9,7 +9,7 @@ import { LoginInput } from 'src/app/services/models/authentication.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   showLoginError: boolean = false;
@@ -19,7 +19,6 @@ export class LoginComponent {
 
   @Output()
   closeEventEmitter: EventEmitter<void> = new EventEmitter<void>();
-  
 
   loginForm: FormGroup<ControlsOf<LoginInput>> = new FormGroup<
     ControlsOf<LoginInput>
@@ -45,7 +44,7 @@ export class LoginComponent {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
   ) {}
 
   onSubmit(): void {
@@ -56,9 +55,9 @@ export class LoginComponent {
         if (isAuthenticated) {
           this.showLoginError = false;
           this.router
-            .navigate(['/quest-dashboard'])
+            .navigate(['pages/quest-dashboard'])
             .then(() => this.loadingService.changeLoadingVisible.next(false));
-            this.closeEventEmitter.emit();
+          this.closeEventEmitter.emit();
         } else {
           this.showLoginError = true;
           this.loadingService.changeLoadingVisible.next(false);
@@ -66,8 +65,7 @@ export class LoginComponent {
       });
   }
 
-  onClose()
-  {
+  onClose() {
     this.closeEventEmitter.emit();
   }
 }

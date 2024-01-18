@@ -1,3 +1,14 @@
 .hide {
-  transform: translate(-332px);
+  transform: translate(-256px);
+}
+
+.grayout {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 25;
 }

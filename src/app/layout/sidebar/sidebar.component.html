@@ -1,64 +1,75 @@
 <div
   [ngClass]="!isVisible ? 'hide' : ''"
-  id="drawer-navigation"
-  class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white"
-  tabindex="-1"
-  aria-labelledby="drawer-navigation-label"
+  class="fixed top-0 left-0 transition-transform flex items-start"
 >
-  <h5
-    id="drawer-navigation-label"
-    class="text-base font-semibold text-gray-50 uppercase"
+  <div
+    id="drawer-navigation"
+    class="flex flex-col z-40 w-64 h-screen p-4 overflow-y-auto bg-slate-800"
+    tabindex="-1"
+    aria-labelledby="drawer-navigation-label"
   >
-    Menu
-  </h5>
+    <h5
+      id="drawer-navigation-label"
+      class="text-base font-semibold text-gray-50 uppercase"
+    >
+      Menu
+    </h5>
 
-  <div class="py-4 overflow-y-auto bg-slate-700">
-    <ul class="space-y-2 font-medium">
-      <li>
-        <a
-          href="quest-dashboard"
-          class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-        >
-          <span class="ms-3">Quests</span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="store"
-          class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-        >
-          <span class="flex-1 ms-3 whitespace-nowrap">Store</span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="character"
-          class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-        >
-          <span class="flex-1 ms-3 whitespace-nowrap">Character</span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="#"
-          class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-        >
-          <span class="flex-1 ms-3 whitespace-nowrap">Profile Settings</span>
-        </a>
-      </li>
-    </ul>
+    <div class="py-4 overflow-y-auto bg-slate-800">
+      <ul class="space-y-2 font-medium">
+        <li>
+          <a
+            href="pages/quest-dashboard"
+            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-700 group"
+          >
+            <span class="ms-3 text-gray-50">Quests</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="pages/store"
+            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-700 group"
+          >
+            <span class="flex-1 ms-3 text-gray-50 whitespace-nowrap"
+              >Store</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="pages/character"
+            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-700 group"
+          >
+            <span class="flex-1 ms-3 text-gray-50 whitespace-nowrap"
+              >Character</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="pages/profile"
+            class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-700 group"
+          >
+            <span class="flex-1 ms-3 text-gray-50 whitespace-nowrap"
+              >Profile Settings</span
+            >
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
   <button
     (click)="onToggle()"
     data-tooltip-target="tooltip-default"
     id="collapseButton"
     type="button"
-    class="flex p-2 shadow-2xl text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:text-white dark:hover:bg-gray-700"
+    class="flex z-40 p-2 shadow-2xl text-gray-900 bg-slate-800 hover:bg-gray-900 hover:text-white focus:outline-none"
   >
     <fa-icon
       [icon]="faAnglesRight"
       [rotate]="!isVisible ? 180 : undefined"
-      class="text-2xl"
+      class="text-2xl rotate-180 text-gray-50"
     ></fa-icon>
   </button>
+  <div *ngIf="isVisible" class="grayout"></div>
 </div>

@@ -1,1 +1,69 @@
-<p>profile works!</p>
+<div
+  class="max-w-screen-sm w-full bg-slate-700 mx-auto px-10"
+  *ngIf="profile$ | async"
+>
+  <h1 class="text-3xl md:text-4xl font-medium my-10 text-gray-50">
+    Profile Settings
+  </h1>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" action="#">
+    <div>
+      <div class="mb-6">
+        <label
+          for="displayName"
+          class="block mb-2 text-md font-medium text-gray-50"
+          >Display Name</label
+        >
+        <input
+          formControlName="displayName"
+          type="text"
+          id="displayName"
+          required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+        />
+        <div
+          *ngIf="
+            displayName?.invalid && (displayName?.dirty || displayName?.touched)
+          "
+          class="text-red-500"
+        >
+          <div *ngIf="displayName?.errors?.['required']">Name is required.</div>
+          <div *ngIf="displayName?.errors?.['minlength']">
+            Name must be at least 2 characters long.
+          </div>
+          <div *ngIf="displayName?.errors?.['maxlength']">
+            Name must be less than 50 characters long.
+          </div>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label for="email" class="block mb-2 text-md font-medium text-gray-50"
+          >Email address</label
+        >
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+        />
+        <div
+          *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+          class="text-red-500"
+        >
+          <div *ngIf="email?.errors?.['required']">Email is required.</div>
+          <div *ngIf="email?.errors?.['email']">Valid email is required.</div>
+          <div *ngIf="email?.errors?.['emailAlreadyExists']">
+            Email is already in use.
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="!profileForm.valid || profileForm.pristine"
+        class="button disabled:cursor-not-allowed text-gray-50 font-medium text-md w-full sm:w-auto px-6 py-3"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

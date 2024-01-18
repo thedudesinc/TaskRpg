@@ -6,11 +6,12 @@ import { LandingComponent } from './layout/landing/landing.component';
 const routes: Routes = [
   { path: '', component: LandingComponent },
   {
-    path: '',
+    path: 'pages',
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),
     canActivate: [authGuard],
   },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
