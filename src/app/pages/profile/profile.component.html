@@ -1,8 +1,8 @@
 <div
-  class="max-w-screen-sm w-full bg-slate-700 mx-auto px-10"
+  class="max-w-screen-sm w-full bg-slate-700 py-10 px-10 shadow-2xl mx-auto p-10"
   *ngIf="profile$ | async"
 >
-  <h1 class="text-3xl md:text-4xl font-medium my-10 text-gray-50">
+  <h1 class="text-3xl md:text-4xl font-medium pb-5 text-gray-50">
     Profile Settings
   </h1>
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" action="#">
