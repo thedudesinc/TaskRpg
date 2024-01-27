@@ -1,1 +1,102 @@
-<p class="text-gray-50">quest-dashboard works!</p>
+<div id="page-wrapper" class="flex flex-row h-[calc(100vh-44px)] w-screen">
+  <div id="main-panel" class="w-full">
+    <div
+      id="quest-header"
+      class="flex flex-wrap py-4 pl-14 bg-slate-700 border-b-2 border-slate-600"
+    >
+      <button href="#" class="button text-gray-50 block mx-4 py-2 px-6">
+        New Quest
+      </button>
+      <button href="#" class="button text-gray-50 block mx-4 py-2 px-6">
+        Edit Quest
+      </button>
+      <button href="#" class="button text-gray-50 block mx-4 py-2 px-6">
+        Delete Quest
+      </button>
+    </div>
+    <div
+      id="quest-panes"
+      class="grid grid-cols-3 gap-4 p-4 h-[calc(100vh-120px)]"
+    >
+      <div
+        id="available-pane"
+        class="h-auto max-w-full shadow-2xl grid-card-bg"
+      >
+        <div
+          class="py-2 px-6 text-gray-50 bg-cyan-700 rounded-t-lg font-medium text-lg shadow-2xl"
+        >
+          Available
+        </div>
+        <div class="p-4">
+          <a
+            href="#"
+            class="block p-4 bg-slate-700 shadow-2xl rounded-md hover:bg-stone-600"
+          >
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-50">
+              Noteworthy technology acquisitions 2021
+            </h5>
+            <p class="font-normal text-gray-50">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+          </a>
+        </div>
+      </div>
+      <div id="active-pane" class="h-auto max-w-full shadow-2xl grid-card-bg">
+        <div
+          class="py-2 px-6 text-gray-50 bg-cyan-700 rounded-t-lg font-medium text-lg shadow-2xl"
+        >
+          Active
+        </div>
+        <div class="p-4">
+          <a
+            href="#"
+            class="block p-4 bg-slate-700 shadow-2xl rounded-md hover:bg-stone-600"
+          >
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-50">
+              Noteworthy technology acquisitions 2021
+            </h5>
+            <p class="font-normal text-gray-50">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+          </a>
+        </div>
+      </div>
+      <div
+        id="completed-pane"
+        class="h-auto max-w-full shadow-2xl grid-card-bg"
+      >
+        <div
+          class="py-2 px-6 text-gray-50 bg-cyan-700 rounded-t-lg font-medium text-lg shadow-2xl"
+        >
+          Completed
+        </div>
+        <div class="p-4">
+          <a
+            href="#"
+            class="block p-4 bg-slate-700 shadow-2xl rounded-md hover:bg-stone-600"
+          >
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-50">
+              Noteworthy technology acquisitions 2021
+            </h5>
+            <p class="font-normal text-gray-50">
+              Here are the biggest enterprise technology acquisitions of 2021 so
+              far, in reverse chronological order.
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="summary-panel"
+    class="w-1/5 p-4 bg-slate-700 border-l-2 border-slate-600"
+  >
+    <div class="py-2 px-6 bg-cyan-700 rounded-lg shadow-2xl">
+      <div class="text-gray-50 font-medium text-lg text-center">
+        Character Summary
+      </div>
+    </div>
+  </div>
+</div>
