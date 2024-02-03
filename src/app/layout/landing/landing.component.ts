@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
   isSignupModalVisible = false;
@@ -25,5 +24,4 @@ export class LandingComponent {
   closeLoginModal() {
     this.isLoginModalVisible = false;
   }
-
 }

@@ -7,6 +7,8 @@ import { StoreComponent } from './store/store.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreationModalComponent } from './character/components/creation-modal/creation-modal.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   {
@@ -28,7 +30,13 @@ const routes: Routes = [
     ProfileComponent,
     QuestDashboardComponent,
     StoreComponent,
+    CreationModalComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    FontAwesomeModule,
+  ],
 })
 export class PagesModule {}

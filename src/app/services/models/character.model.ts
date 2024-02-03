@@ -1,5 +1,5 @@
 export interface CharacterInput {
-  UserId: string;
+  UserId: string | null;
   Name: string;
   Level: number;
   Xp: number;

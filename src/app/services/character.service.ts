@@ -19,8 +19,14 @@ export class CharacterService {
     return this.http.put<CharacterOutput>(this.baseUrl + '/' + id, character);
   }
 
-  get(id: string): Observable<CharacterOutput> {
+  getCharacter(id: string): Observable<CharacterOutput> {
     return this.http.get<CharacterOutput>(this.baseUrl + '/' + id);
+  }
+
+  getCharacterByUserId(userId: string): Observable<CharacterOutput[]> {
+    return this.http.get<CharacterOutput[]>(
+      this.baseUrl + '/getByUserId/' + userId,
+    );
   }
 
   delete(id: string): void {
