@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandingComponent } from './layout/landing/landing.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
+import { LoadingComponent } from './layout/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
     LoginComponent,
     PagesComponent,
     LandingComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

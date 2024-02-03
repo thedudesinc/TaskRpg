@@ -1,16 +1,16 @@
-export interface QuestInput {
-  userId: string;
+export interface CharacterInput {
+  UserId: string;
   Name: string;
-  ChallengeLevel: [number];
+  Level: number;
   Xp: number;
   Gold: number;
 }
 
-export interface QuestOutput {
+export interface CharacterOutput {
   id: string;
-  userId: string;
+  userId: number;
   Name: string;
-  ChallengeLevel: [number];
+  Level: number;
   Xp: number;
   Gold: number;
   dateCreated: string;

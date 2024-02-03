@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ControlsOf } from 'src/app/helpers/helper.types';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -12,6 +13,7 @@ import { LoginInput } from 'src/app/services/models/authentication.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  faXMark = faXmark;
   showLoginError: boolean = false;
 
   @Input()

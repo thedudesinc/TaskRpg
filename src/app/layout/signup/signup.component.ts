@@ -12,6 +12,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { UserInput } from 'src/app/services/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, map } from 'rxjs';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +20,8 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
+  faXMark = faXmark;
+
   @Input()
   isSignupVisible = false;
 
