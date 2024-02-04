@@ -10,10 +10,21 @@
 }
 
 .button:active {
-  box-shadow: 0 3px #164e63;
+  box-shadow: 0 6px #164e63;
   transform: translateY(4px);
 }
 
 .grid-card-bg {
   background-color: rgb(33, 43, 61);
+}
+
+.grayout {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 25;
 }

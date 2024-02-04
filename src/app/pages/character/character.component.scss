@@ -1,6 +1,6 @@
 .button {
   @apply bg-cyan-700 font-medium rounded-md;
-  box-shadow: 0 10px #164e63;
+  box-shadow: 0 6px #164e63;
   transition-duration: 50ms;
   border: none;
 }
@@ -10,7 +10,7 @@
 }
 
 .button:active {
-  box-shadow: 0 5px #164e63;
+  box-shadow: 0 3px #164e63;
   transform: translateY(4px);
 }
 

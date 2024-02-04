@@ -1,0 +1,144 @@
+<div
+  *ngIf="isQuestModalVisible"
+  id="creation-modal"
+  tabindex="-1"
+  aria-hidden="true"
+  class="absolute w-1/4 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-50"
+>
+  <div class="relative w-full max-w-full max-h-full">
+    <div
+      class="relative bg-slate-700 rounded-lg shadow-2xl border-8 border-slate-800 border-r-8"
+    >
+      <div
+        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+      >
+        <h3 class="text-xl font-semibold text-gray-50">Quest Creation</h3>
+        <button
+          (click)="onClose()"
+          type="button"
+          class="end-2.5 text-gray-400 bg-slate-500 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+          data-modal-hide="authentication-modal"
+        >
+          <fa-icon [icon]="faXMark" class="text-2xl"></fa-icon>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <div class="p-4 md:p-5">
+        <form [formGroup]="questForm" (ngSubmit)="onQuestCreate()" class="px-2">
+          <div class="mb-6">
+            <label
+              for="title"
+              class="block mb-2 text-md font-medium text-gray-50"
+              >Quest Title</label
+            >
+            <input
+              formControlName="title"
+              type="text"
+              id="title"
+              class="bg-gray-50 text-gray-900 text-md font-medium rounded-lg w-full block p-2"
+              required
+            />
+            <div
+              *ngIf="title?.invalid && (title?.dirty || title?.touched)"
+              class="text-red-500"
+            >
+              <div *ngIf="title?.errors?.['required']">Title is required.</div>
+              <div *ngIf="title?.errors?.['minlength']">
+                Title must be at least 2 characters long.
+              </div>
+              <div *ngIf="title?.errors?.['maxlength']">
+                Title must be less than 50 characters long.
+              </div>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label
+              for="description"
+              class="block mb-2 text-md font-medium text-gray-50"
+              >Quest Description</label
+            >
+            <textarea
+              formControlName="description"
+              type="text"
+              id="description"
+              class="bg-gray-50 text-gray-900 text-md font-medium rounded-lg w-full block p-2"
+            ></textarea>
+          </div>
+          <div class="relative mb-6">
+            <label
+              for="difficulty"
+              class="block mb-2 text-md font-medium text-gray-50"
+              >Difficulty</label
+            >
+            <input
+              formControlName="difficulty"
+              type="range"
+              id="difficulty"
+              max="100"
+              value="1"
+              class="accent-stone-600 cursor-pointer rounded-full range-sm w-full"
+              required
+            />
+            <span class="text-sm text-gray-400 absolute start-0 -bottom-3"
+              >Trivial</span
+            >
+            <span class="text-sm text-gray-400 absolute end-0 -bottom-3"
+              >Challenging</span
+            >
+          </div>
+          <div class="relative mb-6">
+            <label
+              for="time"
+              class="block mb-2 text-md font-medium text-gray-50"
+              >Time</label
+            >
+            <input
+              formControlName="time"
+              type="range"
+              id="time"
+              max="100"
+              value="1"
+              class="accent-stone-600 cursor-pointer rounded-full range-sm w-full"
+              required
+            />
+            <span class="text-sm text-gray-400 absolute start-0 -bottom-3"
+              >Short</span
+            >
+            <span class="text-sm text-gray-400 absolute end-0 -bottom-3"
+              >Long</span
+            >
+          </div>
+          <div class="relative mb-8">
+            <label
+              for="avoidance"
+              class="block mb-2 text-md font-medium text-gray-50"
+              >Avoidance</label
+            >
+            <input
+              formControlName="avoidance"
+              type="range"
+              id="avoidance"
+              max="100"
+              value="1"
+              class="accent-stone-600 cursor-pointer rounded-full range-sm w-full"
+              required
+            />
+            <span class="text-sm text-gray-400 absolute start-0 -bottom-3"
+              >Easy</span
+            >
+            <span class="text-sm text-gray-400 absolute end-0 -bottom-3"
+              >Unbearable</span
+            >
+          </div>
+          <button
+            type="submit"
+            [disabled]="!questForm.valid"
+            class="button disabled:cursor-not-allowed text-gray-50 font-medium text-md w-full sm:w-auto px-6 py-3"
+          >
+            Create
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

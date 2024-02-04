@@ -1,10 +1,14 @@
+<div *ngIf="isQuestModalVisible" class="grayout"></div>
 <div id="page-wrapper" class="flex flex-row h-[calc(100vh-44px)] w-screen">
   <div id="main-panel" class="w-full">
     <div
       id="quest-header"
       class="flex flex-wrap py-4 pl-14 bg-slate-700 border-b-2 border-slate-600"
     >
-      <button href="#" class="button text-gray-50 block mx-4 py-2 px-6">
+      <button
+        (click)="openQuestModal()"
+        class="button text-gray-50 block mx-4 py-2 px-6"
+      >
         New Quest
       </button>
       <button href="#" class="button text-gray-50 block mx-4 py-2 px-6">
@@ -129,3 +133,8 @@
     </div>
   </div>
 </div>
+<app-quest-modal
+  [isQuestModalVisible]="isQuestModalVisible"
+  (closeEventEmitter)="closeQuestModal()"
+  (onCreateEventEmitter)="onSubmit($event)"
+></app-quest-modal>

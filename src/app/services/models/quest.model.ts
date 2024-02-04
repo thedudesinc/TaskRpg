@@ -1,18 +1,27 @@
 export interface QuestInput {
-  userId: string;
-  Name: string;
-  ChallengeLevel: [number];
-  Xp: number;
-  Gold: number;
+  userId: string | null;
+  title: string;
+  description: string;
+  xp: number;
+  gold: number;
+}
+
+export interface QuestFormInput {
+  userId: string | null;
+  title: string;
+  description: string;
+  difficulty: number;
+  time: number;
+  avoidance: number;
 }
 
 export interface QuestOutput {
   id: string;
   userId: string;
-  Name: string;
-  ChallengeLevel: [number];
-  Xp: number;
-  Gold: number;
+  title: string;
+  description: string;
+  xp: number;
+  gold: number;
   dateCreated: string;
   dateModified: string;
   dateDeleted: string | null;

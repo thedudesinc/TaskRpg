@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreationModalComponent } from './character/components/creation-modal/creation-modal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QuestModalComponent } from './quest-dashboard/components/quest-modal/quest-modal.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     QuestDashboardComponent,
     StoreComponent,
     CreationModalComponent,
+    QuestModalComponent,
   ],
   imports: [
     CommonModule,
