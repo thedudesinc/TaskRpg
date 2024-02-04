@@ -45,7 +45,7 @@ export class CharacterComponent implements OnInit {
         switchMap((user) =>
           this.characterService.create({
             ...formData,
-            UserId: user!.id,
+            userId: user!.id,
           }),
         ),
       )

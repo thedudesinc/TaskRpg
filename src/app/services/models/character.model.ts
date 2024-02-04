@@ -1,18 +1,18 @@
 export interface CharacterInput {
-  UserId: string | null;
-  Name: string;
-  Level: number;
-  Xp: number;
-  Gold: number;
+  userId: string | null;
+  name: string;
+  level: number;
+  xp: number;
+  gold: number;
 }
 
 export interface CharacterOutput {
   id: string;
   userId: number;
-  Name: string;
-  Level: number;
-  Xp: number;
-  Gold: number;
+  name: string;
+  level: number;
+  xp: number;
+  gold: number;
   dateCreated: string;
   dateModified: string;
   dateDeleted: string | null;

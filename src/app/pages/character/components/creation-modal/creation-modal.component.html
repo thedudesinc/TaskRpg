@@ -22,7 +22,7 @@
         >
           <div class="mb-6">
             <label
-              for="Name"
+              for="name"
               class="block mb-2 text-md font-medium text-gray-50"
               >Character Name</label
             >
@@ -34,14 +34,14 @@
               required
             />
             <div
-              *ngIf="Name?.invalid && (Name?.dirty || Name?.touched)"
+              *ngIf="name?.invalid && (name?.dirty || name?.touched)"
               class="text-red-500"
             >
-              <div *ngIf="Name?.errors?.['required']">Name is required.</div>
-              <div *ngIf="Name?.errors?.['minlength']">
+              <div *ngIf="name?.errors?.['required']">Name is required.</div>
+              <div *ngIf="name?.errors?.['minlength']">
                 Name must be at least 2 characters long.
               </div>
-              <div *ngIf="Name?.errors?.['maxlength']">
+              <div *ngIf="name?.errors?.['maxlength']">
                 Name must be less than 50 characters long.
               </div>
             </div>

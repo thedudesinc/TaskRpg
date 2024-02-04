@@ -26,10 +26,10 @@ export class CreationModalComponent {
   characterForm: FormGroup<ControlsOf<CharacterInput>> = new FormGroup<
     ControlsOf<CharacterInput>
   >({
-    UserId: new FormControl('', {
+    userId: new FormControl('', {
       nonNullable: false,
     }),
-    Name: new FormControl('', {
+    name: new FormControl('', {
       nonNullable: true,
       validators: [
         Validators.required,
@@ -37,21 +37,21 @@ export class CreationModalComponent {
         Validators.maxLength(50),
       ],
     }),
-    Level: new FormControl(0, {
+    level: new FormControl(0, {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    Xp: new FormControl(0, {
+    xp: new FormControl(0, {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    Gold: new FormControl(0, {
+    gold: new FormControl(0, {
       nonNullable: true,
       validators: [Validators.required],
     }),
   });
 
-  get Name() {
+  get name() {
     return this.characterForm.get('Name');
   }
 
