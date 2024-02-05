@@ -9,29 +9,11 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root',
 })
 export class CharacterService {
-  // public changeCharacter: BehaviorSubject<CharacterOutput[]> =
-  //   new BehaviorSubject(this.loadState());
-  // public character$: Observable<CharacterOutput[]> =
-  //   this.changeCharacter.asObservable();
-
   baseUrl = environment.baseUrl + '/character';
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService,
   ) {}
-
-  // loadState(): CharacterOutput[] {
-  //   var character: CharacterOutput[] = [];
-  //   this.authenticationService.user$
-  //     .pipe(
-  //       filter((user) => !!user),
-  //       switchMap((user) => this.getCharacterByUserId(user!.id)),
-  //     )
-  //     .subscribe((response) => {
-  //       character = response;
-  //     });
-  //   return character;
-  // }
 
   create(character: CharacterInput): Observable<CharacterOutput> {
     return this.http.post<CharacterOutput>(this.baseUrl, character);
@@ -45,10 +27,8 @@ export class CharacterService {
     return this.http.get<CharacterOutput>(this.baseUrl + '/' + id);
   }
 
-  getCharacterByUserId(userId: string): Observable<CharacterOutput[]> {
-    return this.http.get<CharacterOutput[]>(
-      this.baseUrl + '/getByUserId/' + userId,
-    );
+  getCharacterByUserId(): Observable<CharacterOutput> {
+    return this.http.get<CharacterOutput>(this.baseUrl + '/getByUserId');
   }
 
   delete(id: string): void {

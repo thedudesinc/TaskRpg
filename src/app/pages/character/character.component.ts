@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { filter, switchMap } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable, catchError, filter, switchMap, throwError } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -13,29 +13,24 @@ import {
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss'],
 })
-export class CharacterComponent implements OnInit {
+export class CharacterComponent {
   isCreationVisible = false;
+
+  character$: Observable<CharacterOutput> = this.characterService
+    .getCharacterByUserId()
+    .pipe(
+      catchError((error) => {
+        console.error(error);
+        this.isCreationVisible = true;
+        throw error;
+      }),
+    );
 
   constructor(
     private characterService: CharacterService,
     private authenticationService: AuthenticationService,
     private loadingService: LoadingService,
   ) {}
-
-  ngOnInit(): void {
-    this.authenticationService.user$
-      .pipe(
-        filter((user) => !!user),
-        switchMap((user) =>
-          this.characterService.getCharacterByUserId(user!.id),
-        ),
-      )
-      .subscribe((response) => {
-        if (response.length == 0) {
-          this.isCreationVisible = true;
-        }
-      });
-  }
 
   onCreationEvent(formData: CharacterInput): void {
     this.loadingService.changeLoadingVisible.next(true);

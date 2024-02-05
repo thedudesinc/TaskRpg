@@ -1,6 +1,8 @@
-<div *ngIf="isCreationVisible" class="grayout"></div>
-<app-creation-modal
-  [isCreationModalVisible]="isCreationVisible"
-  (creationEventEmitter)="onCreationEvent($event)"
-  (closeEventEmitter)="(closeCreationModal)"
-></app-creation-modal>
+<ng-container *ngIf="character$ | async">
+  <div *ngIf="isCreationVisible" class="grayout"></div>
+  <app-creation-modal
+    [isCreationModalVisible]="isCreationVisible"
+    (creationEventEmitter)="onCreationEvent($event)"
+    (closeEventEmitter)="(closeCreationModal)"
+  ></app-creation-modal>
+</ng-container>

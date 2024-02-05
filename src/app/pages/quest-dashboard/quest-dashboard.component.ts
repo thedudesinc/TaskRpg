@@ -1,19 +1,20 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import {
   faBarsProgress,
   faCoins,
-  faSign,
   faSignature,
   faUpLong,
 } from '@fortawesome/free-solid-svg-icons';
-import { filter, switchMap, tap } from 'rxjs';
+import { Observable, filter, startWith, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CharacterService } from 'src/app/services/character.service';
+import { QuestTag } from 'src/app/services/enums/quest-tag.enum';
 import { LoadingService } from 'src/app/services/loading.service';
 import { CharacterOutput } from 'src/app/services/models/character.model';
 import {
   QuestFormInput,
   QuestInput,
+  QuestOutput,
 } from 'src/app/services/models/quest.model';
 import { QuestService } from 'src/app/services/quest.service';
 
@@ -22,13 +23,23 @@ import { QuestService } from 'src/app/services/quest.service';
   templateUrl: './quest-dashboard.component.html',
   styleUrls: ['./quest-dashboard.component.scss'],
 })
-export class QuestDashboardComponent implements OnInit {
+export class QuestDashboardComponent {
   faSignature = faSignature;
   faCoins = faCoins;
   faBarsProgress = faBarsProgress;
   faUpLong = faUpLong;
   currentCharacter?: CharacterOutput;
   isQuestModalVisible = false;
+  questTag = QuestTag;
+
+  questReloader: EventEmitter<boolean> = new EventEmitter();
+
+  quests$: Observable<QuestOutput[]> = this.questReloader.pipe(
+    startWith(true),
+    switchMap(() => this.questService.getQuestByUserId()),
+  );
+  character$: Observable<CharacterOutput> =
+    this.characterService.getCharacterByUserId();
 
   @Input()
   isSidebarVisible = false;
@@ -40,29 +51,17 @@ export class QuestDashboardComponent implements OnInit {
     private loadingService: LoadingService,
   ) {}
 
-  ngOnInit(): void {
-    this.authenticationService.user$
-      .pipe(
-        filter((user) => !!user),
-        switchMap((user) =>
-          this.characterService.getCharacterByUserId(user!.id),
-        ),
-      )
-      .subscribe((response) => {
-        this.currentCharacter = response[0];
-      });
-  }
-
   processFormData(formData: QuestFormInput): QuestInput {
     var challengeLevel: number =
       (formData.difficulty + formData.time + formData.avoidance) / 300;
     var calculatedGold: number = Math.trunc(challengeLevel * 1000);
     var calculatedXp: number = Math.trunc(challengeLevel * 2500);
-    console.log(calculatedGold, calculatedXp);
+
     return {
       userId: '',
-      description: formData.description,
       title: formData.title,
+      description: formData.description,
+      tag: QuestTag.Available,
       gold: calculatedGold,
       xp: calculatedXp,
     };
@@ -81,9 +80,14 @@ export class QuestDashboardComponent implements OnInit {
         ),
       )
       .subscribe((response) => {
+        this.questReloader.emit(true);
         this.loadingService.changeLoadingVisible.next(false);
         this.closeQuestModal();
       });
+  }
+
+  getQuestsByTag(tag: QuestTag, quests: QuestOutput[]): QuestOutput[] {
+    return quests.filter((q) => q.tag === tag);
   }
 
   openQuestModal(): void {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule, NgComponentOutlet } from '@angular/common';
 import { CharacterComponent } from './character/character.component';
 import { ProfileComponent } from './profile/profile.component';
 import { QuestDashboardComponent } from './quest-dashboard/quest-dashboard.component';
@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CreationModalComponent } from './character/components/creation-modal/creation-modal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QuestModalComponent } from './quest-dashboard/components/quest-modal/quest-modal.component';
+import { QuestTileComponent } from './quest-dashboard/components/quest-tile/quest-tile.component';
 
 const routes: Routes = [
   {
@@ -33,12 +34,15 @@ const routes: Routes = [
     StoreComponent,
     CreationModalComponent,
     QuestModalComponent,
+    QuestTileComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     FontAwesomeModule,
+    NgComponentOutlet,
+    AsyncPipe,
   ],
 })
 export class PagesModule {}

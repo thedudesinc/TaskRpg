@@ -20,6 +20,7 @@
     </div>
     <div
       id="quest-panes"
+      *ngIf="quests$ | async as quests"
       class="grid grid-cols-3 gap-4 p-4 h-[calc(100vh-120px)]"
     >
       <div
@@ -31,20 +32,10 @@
         >
           Available
         </div>
-        <div class="p-4">
-          <a
-            href="#"
-            class="block p-4 bg-slate-700 shadow-2xl rounded-md hover:bg-stone-600"
-          >
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-50">
-              Noteworthy technology acquisitions 2021
-            </h5>
-            <p class="font-normal text-gray-50">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
-            </p>
-          </a>
-        </div>
+        <app-quest-tile
+          *ngFor="let quest of getQuestsByTag(questTag.Available, quests)"
+          [quest]="quest"
+        ></app-quest-tile>
       </div>
       <div id="active-pane" class="h-auto max-w-full shadow-2xl grid-card-bg">
         <div
@@ -52,20 +43,10 @@
         >
           Active
         </div>
-        <div class="p-4">
-          <a
-            href="#"
-            class="block p-4 bg-slate-700 shadow-2xl rounded-md hover:bg-stone-600"
-          >
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-50">
-              Noteworthy technology acquisitions 2021
-            </h5>
-            <p class="font-normal text-gray-50">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
-            </p>
-          </a>
-        </div>
+        <app-quest-tile
+          *ngFor="let quest of getQuestsByTag(questTag.InProgress, quests)"
+          [quest]="quest"
+        ></app-quest-tile>
       </div>
       <div
         id="completed-pane"
@@ -76,25 +57,16 @@
         >
           Completed
         </div>
-        <div class="p-4">
-          <a
-            href="#"
-            class="block p-4 bg-slate-700 shadow-2xl rounded-md hover:bg-stone-600"
-          >
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-50">
-              Noteworthy technology acquisitions 2021
-            </h5>
-            <p class="font-normal text-gray-50">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
-            </p>
-          </a>
-        </div>
+        <app-quest-tile
+          *ngFor="let quest of getQuestsByTag(questTag.Completed, quests)"
+          [quest]="quest"
+        ></app-quest-tile>
       </div>
     </div>
   </div>
   <div
     id="summary-panel"
+    *ngIf="character$ | async as character"
     class="w-1/5 bg-slate-700 border-l-2 border-slate-600"
   >
     <div class="border-b-2 p-4 border-slate-600 w-full">
@@ -109,12 +81,12 @@
     <div class="px-4 py-2 text-gray-50">
       <div class="flex flex-row">
         <fa-icon [icon]="faSignature" class="py-2 pr-2 text-gray-200"></fa-icon>
-        <div class="py-2 font-medium">Name: {{ currentCharacter?.name }}</div>
+        <div class="py-2 font-medium">Name: {{ character.name }}</div>
       </div>
       <hr />
       <div class="flex flex-row">
         <fa-icon [icon]="faUpLong" class="py-2 pr-2 text-cyan-500"></fa-icon>
-        <div class="py-2 font-medium">Level: {{ currentCharacter?.level }}</div>
+        <div class="py-2 font-medium">Level: {{ character.level }}</div>
       </div>
       <hr />
       <div class="flex flex-row">
@@ -122,12 +94,12 @@
           [icon]="faBarsProgress"
           class="py-2 pr-2 text-emerald-500"
         ></fa-icon>
-        <div class="py-2 font-medium">Xp: {{ currentCharacter?.xp }}</div>
+        <div class="py-2 font-medium">Xp: {{ character.xp }}</div>
       </div>
       <hr />
       <div class="flex flex-row">
         <fa-icon [icon]="faCoins" class="py-2 pr-2 text-yellow-300"></fa-icon>
-        <div class="py-2 font-medium">Gold: {{ currentCharacter?.gold }}</div>
+        <div class="py-2 font-medium">Gold: {{ character.gold }}</div>
       </div>
       <hr />
     </div>

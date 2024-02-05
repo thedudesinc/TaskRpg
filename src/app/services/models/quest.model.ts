@@ -1,7 +1,10 @@
+import { QuestTag } from '../enums/quest-tag.enum';
+
 export interface QuestInput {
   userId: string | null;
   title: string;
   description: string;
+  tag: QuestTag;
   xp: number;
   gold: number;
 }
@@ -20,6 +23,7 @@ export interface QuestOutput {
   userId: string;
   title: string;
   description: string;
+  tag: QuestTag;
   xp: number;
   gold: number;
   dateCreated: string;
