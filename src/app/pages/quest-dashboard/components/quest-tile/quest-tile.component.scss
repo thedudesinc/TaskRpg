@@ -1,0 +1,15 @@
+.button {
+  @apply bg-cyan-700 font-medium rounded-md;
+  box-shadow: 0 6px #164e63;
+  transition-duration: 50ms;
+  border: none;
+}
+
+.button:hover {
+  @apply bg-cyan-800;
+}
+
+.button:active {
+  box-shadow: 0 6px #164e63;
+  transform: translateY(4px);
+}

@@ -21,7 +21,7 @@ export class CharacterComponent {
     .pipe(
       catchError((error) => {
         console.error(error);
-        this.isCreationVisible = true;
+        this.openCreationModal();
         throw error;
       }),
     );

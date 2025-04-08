@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ControlsOf } from 'src/app/helpers/helper.types';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import {
@@ -16,9 +16,19 @@ import { QuestService } from 'src/app/services/quest.service';
 })
 export class QuestModalComponent {
   faXMark = faXmark;
+  faTrash = faTrashCan;
 
   @Input()
   isQuestModalVisible = false;
+
+  @Input()
+  isQuestEdit = false;
+
+  @Input()
+  quest?: QuestInput;
+
+  @Output()
+  saveEventEmitter: EventEmitter<QuestInput> = new EventEmitter<QuestInput>();
 
   @Output()
   closeEventEmitter: EventEmitter<void> = new EventEmitter<void>();

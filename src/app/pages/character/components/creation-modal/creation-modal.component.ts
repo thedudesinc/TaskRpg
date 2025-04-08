@@ -39,15 +39,12 @@ export class CreationModalComponent {
     }),
     level: new FormControl(0, {
       nonNullable: true,
-      validators: [Validators.required],
     }),
     xp: new FormControl(0, {
       nonNullable: true,
-      validators: [Validators.required],
     }),
     gold: new FormControl(0, {
       nonNullable: true,
-      validators: [Validators.required],
     }),
   });
 

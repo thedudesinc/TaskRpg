@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faBarsProgress,
   faCoins,
   faSignature,
   faUpLong,
 } from '@fortawesome/free-solid-svg-icons';
-import { Observable, filter, startWith, switchMap } from 'rxjs';
+import { Observable, catchError, filter, startWith, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { QuestTag } from 'src/app/services/enums/quest-tag.enum';
@@ -16,6 +17,7 @@ import {
   QuestInput,
   QuestOutput,
 } from 'src/app/services/models/quest.model';
+import { LoginResponse } from 'src/app/services/models/user.model';
 import { QuestService } from 'src/app/services/quest.service';
 
 @Component({
@@ -38,14 +40,22 @@ export class QuestDashboardComponent {
     startWith(true),
     switchMap(() => this.questService.getQuestByUserId()),
   );
-  character$: Observable<CharacterOutput> =
-    this.characterService.getCharacterByUserId();
+  character$: Observable<CharacterOutput> = this.characterService
+    .getCharacterByUserId()
+    .pipe(
+      catchError((error) => {
+        console.error(error);
+        this.router.navigate(['pages/character']);
+        throw error;
+      }),
+    );
 
   @Input()
   isSidebarVisible = false;
 
   constructor(
     private questService: QuestService,
+    private router: Router,
     private characterService: CharacterService,
     private authenticationService: AuthenticationService,
     private loadingService: LoadingService,
@@ -54,8 +64,8 @@ export class QuestDashboardComponent {
   processFormData(formData: QuestFormInput): QuestInput {
     var challengeLevel: number =
       (formData.difficulty + formData.time + formData.avoidance) / 300;
-    var calculatedGold: number = Math.trunc(challengeLevel * 1000);
-    var calculatedXp: number = Math.trunc(challengeLevel * 2500);
+    var calculatedGold: number = Math.trunc(challengeLevel * 100);
+    var calculatedXp: number = Math.trunc(challengeLevel * 250);
 
     return {
       userId: '',
