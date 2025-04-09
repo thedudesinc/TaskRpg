@@ -11,6 +11,7 @@ import { CreationModalComponent } from './character/components/creation-modal/cr
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QuestModalComponent } from './quest-dashboard/components/quest-modal/quest-modal.component';
 import { QuestTileComponent } from './quest-dashboard/components/quest-tile/quest-tile.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
     FontAwesomeModule,
     NgComponentOutlet,
     AsyncPipe,
+    DragDropModule,
   ],
 })
 export class PagesModule {}

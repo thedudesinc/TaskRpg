@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   faBarsProgress,
@@ -19,13 +19,19 @@ import {
 } from 'src/app/services/models/quest.model';
 import { LoginResponse } from 'src/app/services/models/user.model';
 import { QuestService } from 'src/app/services/quest.service';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+import { QuestTileComponent } from './components/quest-tile/quest-tile.component';
 
 @Component({
   selector: 'app-quest-dashboard',
   templateUrl: './quest-dashboard.component.html',
   styleUrls: ['./quest-dashboard.component.scss'],
 })
-export class QuestDashboardComponent {
+export class QuestDashboardComponent implements OnInit {
   faSignature = faSignature;
   faCoins = faCoins;
   faBarsProgress = faBarsProgress;
@@ -33,6 +39,9 @@ export class QuestDashboardComponent {
   currentCharacter?: CharacterOutput;
   isQuestModalVisible = false;
   questTag = QuestTag;
+  availableQuests: QuestOutput[] = [];
+  activeQuests: QuestOutput[] = [];
+  completedQuests: QuestOutput[] = [];
 
   questReloader: EventEmitter<boolean> = new EventEmitter();
 
@@ -40,6 +49,7 @@ export class QuestDashboardComponent {
     startWith(true),
     switchMap(() => this.questService.getQuestByUserId()),
   );
+
   character$: Observable<CharacterOutput> = this.characterService
     .getCharacterByUserId()
     .pipe(
@@ -60,6 +70,18 @@ export class QuestDashboardComponent {
     private authenticationService: AuthenticationService,
     private loadingService: LoadingService,
   ) {}
+
+  ngOnInit(): void {
+    this.quests$.subscribe((response) => {
+      this.availableQuests = response.filter(
+        (q) => q.tag === QuestTag.Available,
+      );
+      this.activeQuests = response.filter((q) => q.tag === QuestTag.InProgress);
+      this.completedQuests = response.filter(
+        (q) => q.tag === QuestTag.Completed,
+      );
+    });
+  }
 
   processFormData(formData: QuestFormInput): QuestInput {
     var challengeLevel: number =
@@ -106,5 +128,28 @@ export class QuestDashboardComponent {
 
   closeQuestModal(): void {
     this.isQuestModalVisible = false;
+  }
+
+  drop(event: CdkDragDrop<QuestOutput[]>, questTag: QuestTag) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+      var updatedQuest: QuestInput = { ...event.item.data, tag: questTag };
+      this.questService
+        .update(event.item.data.id, updatedQuest)
+        .subscribe(() => {
+          this.questReloader.emit(true);
+        });
+    }
   }
 }

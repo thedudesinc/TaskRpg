@@ -14,7 +14,6 @@
     </div>
     <div
       id="quest-panes"
-      *ngIf="quests$ | async as quests"
       class="grid grid-cols-3 gap-4 p-4 h-[calc(100vh-120px)]"
     >
       <div
@@ -26,10 +25,19 @@
         >
           Available
         </div>
-        <app-quest-tile
-          *ngFor="let quest of getQuestsByTag(questTag.Available, quests)"
-          [quest]="quest"
-        ></app-quest-tile>
+        <div
+          cdkDropList
+          id="available-list"
+          [cdkDropListConnectedTo]="['active-list', 'completed-list']"
+          [cdkDropListData]="availableQuests"
+          (cdkDropListDropped)="drop($event, questTag.Available)"
+          class="h-full"
+        >
+          <app-quest-tile
+            *ngFor="let quest of availableQuests"
+            [quest]="quest"
+          ></app-quest-tile>
+        </div>
       </div>
       <div
         id="active-pane"
@@ -40,10 +48,19 @@
         >
           Active
         </div>
-        <app-quest-tile
-          *ngFor="let quest of getQuestsByTag(questTag.InProgress, quests)"
-          [quest]="quest"
-        ></app-quest-tile>
+        <div
+          cdkDropList
+          id="active-list"
+          [cdkDropListConnectedTo]="['completed-list', 'available-list']"
+          [cdkDropListData]="activeQuests"
+          (cdkDropListDropped)="drop($event, questTag.InProgress)"
+          class="h-full"
+        >
+          <app-quest-tile
+            *ngFor="let quest of activeQuests"
+            [quest]="quest"
+          ></app-quest-tile>
+        </div>
       </div>
       <div
         id="completed-pane"
@@ -54,10 +71,19 @@
         >
           Completed
         </div>
-        <app-quest-tile
-          *ngFor="let quest of getQuestsByTag(questTag.Completed, quests)"
-          [quest]="quest"
-        ></app-quest-tile>
+        <div
+          cdkDropList
+          id="completed-list"
+          [cdkDropListConnectedTo]="['active-list', 'available-list']"
+          [cdkDropListData]="completedQuests"
+          (cdkDropListDropped)="drop($event, questTag.Completed)"
+          class="h-full"
+        >
+          <app-quest-tile
+            *ngFor="let quest of completedQuests"
+            [quest]="quest"
+          ></app-quest-tile>
+        </div>
       </div>
     </div>
   </div>
